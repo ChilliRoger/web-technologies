@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nutrition Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .heading { color: #2c3e50; font-size: 28px; margin-left: 600PX; margin-top: 40px; }
+    form { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 400px; margin-left: 550px; margin-top: 20px; }
+    label { display: block; margin-top: 10px; }
+    
+  
+    .food-options {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    
+   
+    .food-category {
+      font-weight: bold;
+      margin-top: 8px;
+      margin-bottom: 5px;
+      color: #2c3e50;
+    }
+    
+    .report, .result { margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+    .images { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .coffin-container { position: relative; width: 150px; height: 200px; }
+    .coffin { width: 100%; height: 100%; }
+    .person { position: absolute; top: 40px; left: 30px; width: 90px; opacity: 1; transition: all 1s ease; }
+  </style>
+</head>
+<body>
+
+  <h2 class="heading">Nutrition & Lifestyle Form</h2>
+  <form id="nutritionForm">
+    <label>Name: <input type="text" name="username" required></label>
+    <label>Photo: <input type="file" name="photo" accept="image/*"></label>
+    <label>Gender:
+      <select name="gender" required>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </label>
+    <label>Locality: <textarea name="locality" required rows="3" cols="30"></textarea></label>
+    <label>Age: <input type="number" name="age" min="1" required></label>
+    
+    <label>Favourite Food (select multiple):</label>
+    <div class="food-options">
+      <!-- Junk Food Category -->
+      <div class="food-category">Junk Food</div>
+      <label><input type="checkbox" name="food" value="Pizza" data-score="30"> Pizza - Junk (30/100)</label>
+      <label><input type="checkbox" name="food" value="Burger" data-score="25"> Burger - Junk (25/100)</label>
+      <label><input type="checkbox" name="food" value="Ice Cream" data-score="40"> Ice Cream - Junk (40/100)</label>
+      <label><input type="checkbox" name="food" value="French Fries" data-score="20"> French Fries - Junk (20/100)</label>
+      <label><input type="checkbox" name="food" value="Hot Dogs" data-score="15"> Hot Dogs - Junk (15/100)</label>
+      <label><input type="checkbox" name="food" value="Fried Chicken" data-score="25"> Fried Chicken - Junk (25/100)</label>
+      <label><input type="checkbox" name="food" value="Donuts" data-score="15"> Donuts - Junk (15/100)</label>
+      
+      <!-- Healthy Food Category -->
+      <div class="food-category">Healthy Food</div>
+      <label><input type="checkbox" name="food" value="Salad" data-score="90"> Salad - Healthy (90/100)</label>
+      <label><input type="checkbox" name="food" value="Fruits" data-score="85"> Fruits - Healthy (85/100)</label>
+      <label><input type="checkbox" name="food" value="Oats" data-score="95"> Oats - Healthy (95/100)</label>
+      <label><input type="checkbox" name="food" value="Grilled Chicken" data-score="80"> Grilled Chicken - Healthy (80/100)</label>
+      <label><input type="checkbox" name="food" value="Avocado" data-score="90"> Avocado - Healthy (90/100)</label>
+      <label><input type="checkbox" name="food" value="Broccoli" data-score="95"> Broccoli - Healthy (95/100)</label>
+      <label><input type="checkbox" name="food" value="Quinoa" data-score="90"> Quinoa - Healthy (90/100)</label>
+      
+      <!-- Moderate Options -->
+      <div class="food-category">Moderate Options</div>
+      <label><input type="checkbox" name="food" value="Bread" data-score="60"> Bread - Moderate (60/100)</label>
+      <label><input type="checkbox" name="food" value="Rice" data-score="65"> Rice - Moderate (65/100)</label>
+      <label><input type="checkbox" name="food" value="Pasta" data-score="55"> Pasta - Moderate (55/100)</label>
+      <label><input type="checkbox" name="food" value="Cheese" data-score="50"> Cheese - Moderate (50/100)</label>
+      <label><input type="checkbox" name="food" value="Eggs" data-score="75"> Eggs - Moderate (75/100)</label>
+      
+      <!-- Beverages -->
+      <div class="food-category">Beverages</div>
+      <label><input type="checkbox" name="food" value="Soda" data-score="10"> Soda - Junk (10/100)</label>
+      <label><input type="checkbox" name="food" value="Coffee" data-score="65"> Coffee - Moderate (65/100)</label>
+      <label><input type="checkbox" name="food" value="Green Tea" data-score="95"> Green Tea - Healthy (95/100)</label>
+      <label><input type="checkbox" name="food" value="Fruit Juice" data-score="70"> Fruit Juice - Moderate (70/100)</label>
+      <label><input type="checkbox" name="food" value="Energy Drinks" data-score="5"> Energy Drinks - Junk (5/100)</label>
+    </div>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <div class="report" id="report" style="display:none;"></div>
+  <div class="result" id="result" style="display:none;">
+    <h3>Nutrition Visualization</h3>
+    <div class="images" id="visualization">
+      <div class="coffin-container">
+        <img src="../img/coffin.jpg" alt="Coffin" class="coffin">
+        <img src="../img/person.jpg" alt="Person" class="person" id="personImg">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('nutritionForm');
+    const reportDiv = document.getElementById('report');
+    const resultDiv = document.getElementById('result');
+    const personImg = document.getElementById('personImg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const name = data.get('username');
+      const gender = data.get('gender');
+      const locality = data.get('locality');
+      const age = data.get('age');
+      const photo = data.get('photo');
+      const foods = data.getAll('food');
+
+      let total = 0;
+      let count = 0;
+      document.querySelectorAll('input[name="food"]:checked').forEach(f=>{
+        total += parseInt(f.getAttribute("data-score"));
+        count++;
+      });
+      let avgScore = count ? total / count : 0;
+
+      // Report
+      let reportHTML = `<h3>Submitted Report</h3>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Gender:</b> ${gender}</p>
+        <p><b>Locality:</b> ${locality}</p>
+        <p><b>Age:</b> ${age}</p>
+        <p><b>Favourite Foods:</b> ${foods.join(", ")}</p>
+        <p><b>Nutrition Score:</b> ${avgScore.toFixed(1)}/100</p>`;
+      reportDiv.innerHTML = reportHTML;
+      reportDiv.style.display = "block";
+
+      // Visualization
+      if(avgScore >= 70){
+        personImg.style.top = "40px";
+        personImg.style.opacity = "1";
+        personImg.style.transform = "translateX(-200px)";
+      } else if(avgScore >= 40){
+        personImg.style.top = "70px";
+        personImg.style.opacity = "0.7";
+        personImg.style.transform = "translateX(-80px)";
+      } else {
+        personImg.style.top = "40px";
+        personImg.style.opacity = "0.3";
+        personImg.style.transform = "translateX(0)";
+      }
+      resultDiv.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

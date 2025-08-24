@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Mapping</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 30px;
+    }
+    h1 {
+      color: #333;
+    }
+    img {
+      border: 2px solid #444;
+    }
+  </style>
+</head>
+<body>
+    
+  <h1>Nike Shoe Image Map</h1>
+
+
+  <img src="../img/shoe.jpg" usemap="#image-map" width="700">
+
+  <map name="image-map">
+ 
+    <area target="_blank" alt="Nike logo" title="Nike logo"
+      href="https://www.nike.com/in/"
+      coords="239,442,227,460,208,486,239,519,280,501,298,488,320,475,345,463,385,429,252,470"
+      shape="poly">
+
+    <area target="_blank" alt="Socks" title="Socks"
+      href="https://www.nike.com/in/w/socks-uwr3"
+      coords="358,302,93"
+      shape="circle">
+
+    <area target="_blank" alt="Sole" title="Sole"
+      href="https://www.amazon.in/Sole-For-Shoes/s?k=Sole+For+Shoes"
+      coords="494,574,106,525"
+      shape="rect">
+  </map>
+
+</body>
+</html>

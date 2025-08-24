@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voyage Journal — Old-Money Chic</title>
+  <style>
+    :root{
+      --beige:#efe7dc;      /* canvas */
+      --olive:#556b2f;      /* headings */
+      --rose:#e6b7c7;       /* accents */
+      --brown:#4b3a2f;      /* text/dark */
+      --ink:#2a2623;        /* deeper text */
+      --cream:#faf7f1;      /* cards */
+      --olive-50:#6e8350;
+    }
+
+    html,body{margin:0; padding:0; font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:linear-gradient(120deg,var(--beige), #f5efe6);}
+
+    /* Layout */
+    .container{max-width:1100px; margin:0 auto; padding:24px;}
+    header, footer{background:linear-gradient(180deg, var(--cream), #fff); border:1px solid #e8dfd3; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(75,58,47,.08);}  
+    header h1{margin:0; letter-spacing:.5px; color:var(--olive); font-size:2.2rem;}
+    header p{margin:.3rem 0 0; color:var(--brown);}    
+
+    nav{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+    nav a{padding:10px 14px; border-radius:999px; text-decoration:none; color:var(--brown); border:1px solid #dccfbf; background:#fff; font-size:.95rem}
+    nav a:hover{border-color:var(--olive); color:#fff; background:var(--olive)}
+
+    section{margin:28px 0; padding:22px; border:1px solid #e8dfd3; border-radius:20px; background:#fff; box-shadow:0 8px 22px rgba(75,58,47,.06);}  
+    section h2{margin-top:0; color:var(--olive); font-size:1.6rem}
+
+    /* Cards */
+    .grid{display:grid; gap:16px}
+    @media(min-width:768px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+    .card{background:var(--cream); border:1px solid #e8dfd3; border-radius:18px; overflow:hidden; display:flex; flex-direction:column}
+    .card img{width:100%; height:170px; object-fit:cover}
+    .card .content{padding:14px 14px 18px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:var(--rose); color:#3b2a26; font-weight:600; font-size:.8rem; border:1px solid #d5a2b5}
+    .muted{color:#6b5c52; font-size:.95rem}
+
+    /* Table */
+    table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px; border:1px solid #e8dfd3}
+    thead th{background:var(--olive); color:#fff; text-align:left; padding:12px}
+    tbody td{padding:12px; border-top:1px solid #e8dfd3}
+    tbody tr:nth-child(even){background:#fbf8f2}
+
+    /* Lists */
+    ol{padding-left:20px}
+    ul{margin:.4rem 0 .8rem 1.1rem}
+
+    /* Form */
+    form{display:grid; gap:14px; max-width:720px}
+    label{font-weight:600; color:var(--brown)}
+    select,input,button{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #d9cdbf; background:#fff; font-size:1rem}
+    input[type=range]{padding:0}
+    .range-val{font-weight:700; color:var(--olive)}
+    button{background:var(--olive); color:#fff; cursor:pointer}
+    button:hover{background:var(--olive-50)}
+
+    /* Drag & Drop */
+    .drag-area{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:14px}
+    .drag-area img{border-radius:16px; border:1px solid #e8dfd3}
+    .dropzone{border:2px dashed var(--brown); border-radius:16px; padding:24px; text-align:center; background:#fffdf8}
+
+    /* Media */
+    .media{display:grid; gap:16px}
+    @media(min-width:900px){.media{grid-template-columns:1.1fr .9fr}}
+
+    footer{font-size:.95rem; color:#6d5d53}
+    footer a{color:var(--olive)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Voyage Journal</h1>
+      <p class="muted">An elegant, old‑money inspired travel page — beige, olive, rose & dark brown hues.</p>
+      <nav>
+        <a href="#top5">Top 5</a>
+        <a href="#wishlist">Wishlist by Place</a>
+        <a href="#compare">Compare</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#plan">Plan Trip</a>
+        <a href="#media">Audio/Video</a>
+      </nav>
+    </header>
+
+    <!-- Lists (Ordered + Unordered) -->
+    <section id="top5" aria-labelledby="top5-heading">
+      <h2 id="top5-heading">Ordered List — Top 5 Destinations</h2>
+      <ol>
+        <li>Kyoto, Japan</li>
+        <li>Florence, Italy</li>
+        <li>Reykjavík, Iceland</li>
+        <li>Ubud, Bali</li>
+        <li>Cape Town, South Africa</li>
+      </ol>
+    </section>
+
+    <section id="wishlist" aria-labelledby="wishlist-heading">
+      <h2 id="wishlist-heading">Unordered Lists — Things I’d Do in Each Place</h2>
+      <div class="grid">
+        <article class="card">
+          <img src="../img/tori.jpg"Torii gate and autumn leaves in Kyoto"/>
+          <div class="content">
+            <span class="pill" lang="ja">Kyoto</span>
+            <ul>
+              <li>Wander Arashiyama Bamboo Grove</li>
+              <li>Tea ceremony in Gion</li>
+              <li>Temple‑hopping at Kiyomizu‑dera</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../img/catherdral.jpg"Cathedral dome and terracotta roofs in Florence"/>
+          <div class="content">
+            <span class="pill" lang="it">Florence</span>
+            <ul>
+              <li>See Michelangelo’s David</li>
+              <li>Golden hour at Piazzale Michelangelo</li>
+              <li>Truffle pasta tasting</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../img/lights.jpg" alt="Northern lights over Icelandic landscape"/>
+          <div class="content">
+            <span class="pill" lang="is">Reykjavík</span>
+            <ul>
+              <li>Chase the Northern Lights</li>
+              <li>Blue Lagoon dip</li>
+              <li>Golden Circle road trip</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../img/terrace.jpg" alt="Tegallalang rice terraces in Bali"/>
+          <div class="content">
+            <span class="pill">Ubud</span>
+            <ul>
+              <li>Sunrise at Mount Batur</li>
+              <li>Yoga by the rice fields</li>
+              <li>Ubud Art Market stroll</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../img/table.jpg" alt="Table Mountain overlooking Cape Town"/>
+          <div class="content">
+            <span class="pill">Cape Town</span>
+            <ul>
+              <li>Hike Table Mountain</li>
+              <li>Drive Chapman’s Peak</li>
+              <li>Penguins at Boulders Beach</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section id="compare" aria-labelledby="compare-heading">
+      <h2 id="compare-heading">Table — Compare Two Destinations</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>Best Time to Visit</th>
+            <th>Budget (₹)</th>
+            <th>Rating ★</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kyoto</td>
+            <td>March–May (Sakura) / Oct–Nov</td>
+            <td>₹1,20,000 – ₹1,80,000</td>
+            <td>4.8</td>
+          </tr>
+          <tr>
+            <td>Reykjavík</td>
+            <td>Sept–Mar (Aurora) / Jun–Aug</td>
+            <td>₹1,60,000 – ₹2,50,000</td>
+            <td>4.7</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Images (also Draggable) -->
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading" style="text-align: center;">Images — Drag Me Around</h2>
+      <p class="muted" style="text-align: center;">Three featured photos below are <strong>draggable</strong> </p>
+      
+      <div class="drag-area" style="max-width: 900px; margin: 0 auto;">
+        <img src="../img/tori.jpg" 
+             draggable="true" alt="Kyoto torii gate" 
+             style="width: 100%; height: 180px; object-fit: cover;"/>
+        <img src="../img/lights.jpg" 
+             draggable="true" alt="Ubud rice terraces" 
+             style="width: 100%; height: 180px; object-fit: cover;"/>
+        <img src="../img/table.jpg" 
+             draggable="true" alt="Cape Town Table Mountain" 
+             style="width: 100%; height: 180px; object-fit: cover;"/>
+      </div>
+      
+      <div class="dropzone" aria-label="Drop zone" style="max-width: 500px; margin: 16px auto 0;">
+        <strong>Drop your favorite destination image here!</strong><br/>
+        <span class="muted">(No JavaScript needed for this assignment — this is a visual target only.)</span>
+      </div>
+    </section>
+
+    <!-- Form Controls -->
+    <section id="plan" aria-labelledby="plan-heading">
+      <h2 id="plan-heading" style="text-align: center;">Plan Your Trip</h2>
+      <form action="#" method="get" style="margin: 0 auto;">
+        <div>
+          <label for="season">Preferred Travel Season</label>
+          <select id="season" name="season" required>
+            <option value="">Select a season…</option>
+            <option>Spring</option>
+            <option>Summer</option>
+            <option>Autumn</option>
+            <option>Winter</option>
+          </select>
+        </div>
+        <div>
+          <label for="date">Planned Trip Date</label>
+          <input id="date" name="date" type="date" required />
+        </div>
+        <div>
+          <label for="budget">Budget Preference (₹50k–₹300k)</label>
+          <input id="budget" name="budget" type="range" min="50000" max="300000" step="5000" value="150000" oninput="document.getElementById('bval').textContent = '₹' + Number(this.value).toLocaleString('en-IN')" />
+          <div>Selected: <span id="bval" class="range-val">₹1,50,000</span></div>
+        </div>
+        <button type="submit">Save Preferences</button>
+      </form>
+    </section>
+
+    <!-- Audio / Video -->
+    <section id="media" class="media" aria-labelledby="media-heading">
+      <div>
+        <h2 id="media-heading">Audio — Looped Background Vibes</h2>
+        <audio controls loop>
+          <source src="../audio/goa_vibe.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <p class="muted">Click play to listen to ambient sounds while you explore.</p>
+      </div>
+      <div>
+        <h2>Video — Travel Inspiration</h2>
+        <div style="position:relative; padding-top:56.25%; border-radius:16px; overflow:hidden; border:1px solid #e8dfd3; background:#000">
+          <iframe 
+            title="YouTube Travel Montage" 
+            src="https://www.youtube.com/embed/6uAK2TiVXYI?si=kUCB1YHKU34Qyrri" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen 
+            style="position:absolute; inset:0; width:100%; height:100%; border:0;">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer style="text-align: center;">
+      <p>© 2025 Voyage Journal. Crafted for assignment submission.</p>
+    </footer>
+  </div>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const budgetInput = document.getElementById('budget');
+    const budgetValue = document.getElementById('bval');
+    budgetValue.textContent = '₹' + Number(budgetInput.value).toLocaleString('en-IN');
+  });
+  </script>
+</body>
+</html>
