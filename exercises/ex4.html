@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike Sneaker Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    form {
+      background: white;
+      max-width: 450px;
+      width: 100%;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      width: auto;
+      margin-right: 6px;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+    button {
+      margin-top: 18px;
+      padding: 12px;
+      width: 100%;
+      background: black;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #444;
+    }
+    .rating-box {
+      margin-top: 12px;
+    }
+    .rating-display {
+      margin-top: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<form id="sneakerForm">
+  <h2>👟 Nike Sneaker Order</h2>
+
+  <label>Full Name:
+    <input type="text" id="name" required>
+    <div class="error" id="nameError"></div>
+  </label>
+
+  <label>Email:
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+  </label>
+
+  <label>Phone Number:
+    <input type="tel" id="phone" pattern="[0-9]{10}" required>
+    <div class="error" id="phoneError"></div>
+  </label>
+
+  <label>Sneaker Model:
+    <select id="model" required>
+      <option value="">--Select--</option>
+      <option>Air Jordan 1</option>
+      <option>Air Force 1</option>
+      <option>Nike Dunk</option>
+      <option>Nike Blazer</option>
+    </select>
+  </label>
+
+  <label>Sneaker Size:
+    <select id="size" required>
+      <option value="">--Select--</option>
+      <option>US 7</option>
+      <option>US 8</option>
+      <option>US 9</option>
+      <option>US 10</option>
+    </select>
+  </label>
+
+  <label>Quantity:
+    <input type="number" id="quantity" min="1" max="5" required>
+  </label>
+
+  <label>Gender:
+    <input type="radio" name="gender" value="Male" required> Male
+    <input type="radio" name="gender" value="Female"> Female
+  </label>
+
+  <label>Extra Features:
+    <input type="checkbox" value="Custom Laces"> Custom Laces
+    <input type="checkbox" value="Waterproof"> Waterproof
+  </label>
+
+  <label>Address:
+    <textarea id="address" rows="3" required></textarea>
+  </label>
+
+  <label>Pin Code:
+    <input type="text" id="pincode" pattern="[0-9]{6}" required>
+    <div class="error" id="pincodeError"></div>
+  </label>
+
+  <label>Payment Method:
+    <select id="payment" required>
+      <option value="">--Select--</option>
+      <option>UPI</option>
+      <option>Credit Card</option>
+      <option>Cash on Delivery</option>
+    </select>
+  </label>
+
+  <label>Upload ID Proof:
+    <input type="file" id="idproof" required>
+  </label>
+
+  <label>Delivery Date:
+    <input type="date" id="deliveryDate" required>
+  </label>
+
+  <!-- Nike Love Rating with Meter -->
+  <div class="rating-box">
+    <label>Rate Your Nike Love (1-10):</label>
+    <input type="range" id="rating" min="1" max="10" value="5" oninput="updateMeter(this.value)">
+    <meter id="ratingMeter" min="1" max="10" value="5"></meter>
+    <div class="rating-display">Rating: <span id="ratingValue">5</span>/10</div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+function updateMeter(val) {
+  document.getElementById("ratingMeter").value = val;
+  document.getElementById("ratingValue").textContent = val;
+}
+
+document.getElementById("sneakerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  let isValid = true;
+
+  // Name check
+  const name = document.getElementById("name").value.trim();
+  if (name.length < 3) {
+    document.getElementById("nameError").textContent = "Enter at least 3 characters.";
+    isValid = false;
+  } else {
+    document.getElementById("nameError").textContent = "";
+  }
+
+  // Email check
+  const email = document.getElementById("email").value;
+  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if (!email.match(emailPattern)) {
+    document.getElementById("emailError").textContent = "Invalid email format.";
+    isValid = false;
+  } else {
+    document.getElementById("emailError").textContent = "";
+  }
+
+  // Phone check
+  const phone = document.getElementById("phone").value;
+  if (!/^\d{10}$/.test(phone)) {
+    document.getElementById("phoneError").textContent = "Enter 10 digit number.";
+    isValid = false;
+  } else {
+    document.getElementById("phoneError").textContent = "";
+  }
+
+  // Pincode check
+  const pincode = document.getElementById("pincode").value;
+  if (!/^\d{6}$/.test(pincode)) {
+    document.getElementById("pincodeError").textContent = "Enter 6 digit pincode.";
+    isValid = false;
+  } else {
+    document.getElementById("pincodeError").textContent = "";
+  }
+
+  if (isValid) {
+    alert("✅ Form submitted successfully!");
+    this.reset();
+    updateMeter(5); // reset rating
+  }
+});
+</script>
+
+</body>
+</html>
